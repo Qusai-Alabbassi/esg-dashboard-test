@@ -21,12 +21,12 @@ df_kpis["Pillar"] = pd.Categorical(df_kpis["Pillar"], categories=pillar_order, o
 
 # App setup
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
-app.title = "Stip Wind Farm 396MW - ESG Dashboard"
+app.title = "Company X - ESG Dashboard"
 
 # Layout
 app.layout = dbc.Container([
     dbc.Row([
-        dbc.Col(html.H2("Stip Wind Farm 396MW – ESG Dashboard",
+        dbc.Col(html.H2("Company X – ESG Dashboard",
                         className="text-center text-primary"),
                 className="d-flex align-items-center justify-content-center")
     ], justify="center", className="my-3"),
