@@ -14,7 +14,6 @@ import os
 
 # Load data
 excel_path = "ESG_KPI_Dataset.xlsx"
-logo_path = "alcazar_logo.png"
 kpi_data = pd.read_excel(excel_path)
 kpi_data.dropna(inplace=True)
 kpi_data["Year"] = kpi_data["Year"].astype(int)
@@ -23,9 +22,6 @@ kpi_data["Year"] = kpi_data["Year"].astype(int)
 df_kpis = kpi_data[["Pillar", "Category", "KPI"]].drop_duplicates()
 pillar_order = ["Environment", "Social", "Governance"]
 df_kpis["Pillar"] = pd.Categorical(df_kpis["Pillar"], categories=pillar_order, ordered=True)
-
-# Encode logo
-encoded_image = base64.b64encode(open(logo_path, 'rb').read()).decode()
 
 # App setup
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
