@@ -1,15 +1,20 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+# In[3]:
+
+
 import dash
 import dash_bootstrap_components as dbc
 from dash import html, dcc, Input, Output, State
 import pandas as pd
 import plotly.graph_objects as go
+import base64
 import os
 
 # Load data
 excel_path = "ESG_KPI_Dataset.xlsx"
+logo_path = "alcazar_logo.png"
 kpi_data = pd.read_excel(excel_path)
 kpi_data.dropna(inplace=True)
 kpi_data["Year"] = kpi_data["Year"].astype(int)
@@ -19,17 +24,22 @@ df_kpis = kpi_data[["Pillar", "Category", "KPI"]].drop_duplicates()
 pillar_order = ["Environment", "Social", "Governance"]
 df_kpis["Pillar"] = pd.Categorical(df_kpis["Pillar"], categories=pillar_order, ordered=True)
 
+# Encode logo
+encoded_image = base64.b64encode(open(logo_path, 'rb').read()).decode()
+
 # App setup
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
-app.title = "Company X - ESG Dashboard"
+app.title = "Stip Wind Farm 396MW - ESG Dashboard"
 
 # Layout
 app.layout = dbc.Container([
     dbc.Row([
-        dbc.Col(html.H2("Company X – ESG Dashboard",
+        dbc.Col(html.Img(src='data:image/png;base64,{}'.format(encoded_image),
+                         style={'height': '60px'}), width="auto"),
+        dbc.Col(html.H2("Stip Wind Farm 396MW – ESG Dashboard",
                         className="text-center text-primary"),
                 className="d-flex align-items-center justify-content-center")
-    ], justify="center", className="my-3"),
+    ], justify="between", className="my-3"),
 
     dbc.Row([
         dbc.Col([
@@ -142,3 +152,11 @@ def update_kpi_graph(pillar, category, kpi):
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 8050))
     app.run(host="0.0.0.0", port=port, debug=True)
+
+    
+
+# In[ ]:
+
+
+
+
