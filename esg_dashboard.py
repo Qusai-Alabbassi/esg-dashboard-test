@@ -1,9 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[3]:
-
-
 import dash
 import dash_bootstrap_components as dbc
 from dash import html, dcc, Input, Output, State
@@ -113,15 +110,6 @@ def update_kpi_graph(pillar, category, kpi):
 
     fig = go.Figure()
 
-    fig.update_layout(shapes=[
-        dict(type="rect", xref="x", yref="paper", x0=2017.5, x1=2019.5, y0=0, y1=1,
-             fillcolor="#1f77b4", opacity=0.1, layer="below", line_width=0),
-        dict(type="rect", xref="x", yref="paper", x0=2019.5, x1=2024.5, y0=0, y1=1,
-             fillcolor="#ff7f0e", opacity=0.1, layer="below", line_width=0),
-        dict(type="rect", xref="x", yref="paper", x0=2024.5, x1=2025.5, y0=0, y1=1,
-             fillcolor="#2ca02c", opacity=0.1, layer="below", line_width=0),
-    ])
-
     fig.add_trace(go.Scatter(
         x=filtered_df["Year"],
         y=filtered_df["Value"],
@@ -130,12 +118,6 @@ def update_kpi_graph(pillar, category, kpi):
         marker=dict(size=8),
         name=kpi
     ))
-
-    fig.update_layout(annotations=[
-        dict(x=2018.5, y=1.07, xref='x', yref='paper', text="Development", showarrow=False, font=dict(color="#1f77b4", size=11)),
-        dict(x=2022, y=1.07, xref='x', yref='paper', text="Construction", showarrow=False, font=dict(color="#ff7f0e", size=11)),
-        dict(x=2025, y=1.07, xref='x', yref='paper', text="Operation", showarrow=False, font=dict(color="#2ca02c", size=11)),
-    ])
 
     fig.update_layout(
         height=500,
@@ -152,11 +134,3 @@ def update_kpi_graph(pillar, category, kpi):
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 8050))
     app.run(host="0.0.0.0", port=port, debug=True)
-
-    
-
-# In[ ]:
-
-
-
-
