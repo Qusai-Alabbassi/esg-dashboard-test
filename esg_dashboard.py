@@ -34,7 +34,7 @@ app.layout = dbc.Container([
         dbc.Col(html.Img(src='data:image/png;base64,{}'.format(encoded_image),
                          style={'height': '60px'}), width="auto"),
         dbc.Col(html.H2("Bank of Jordan – ESG Dashboard",
-                        className="text-center text-primary"),
+                className="text-center", style={"color": "#F9A825"}),
                 className="d-flex align-items-center justify-content-center")
     ], justify="between", className="my-3"),
 
