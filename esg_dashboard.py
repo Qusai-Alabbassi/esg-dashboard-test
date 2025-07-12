@@ -14,7 +14,7 @@ import os
 
 # Load data
 excel_path = "ESG_KPI_Dataset.xlsx"
-logo_path = "alcazar_logo.png"
+logo_path = "Bank_of_Jordan_logo.png"
 kpi_data = pd.read_excel(excel_path)
 kpi_data.dropna(inplace=True)
 kpi_data["Year"] = kpi_data["Year"].astype(int)
@@ -29,14 +29,14 @@ encoded_image = base64.b64encode(open(logo_path, 'rb').read()).decode()
 
 # App setup
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
-app.title = "Stip Wind Farm 396MW - ESG Dashboard"
+app.title = "Bank of Jordan - ESG Dashboard"
 
 # Layout
 app.layout = dbc.Container([
     dbc.Row([
         dbc.Col(html.Img(src='data:image/png;base64,{}'.format(encoded_image),
                          style={'height': '60px'}), width="auto"),
-        dbc.Col(html.H2("Stip Wind Farm 396MW – ESG Dashboard",
+        dbc.Col(html.H2("Bank of Jordan – ESG Dashboard",
                         className="text-center text-primary"),
                 className="d-flex align-items-center justify-content-center")
     ], justify="between", className="my-3"),
